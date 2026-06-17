@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply transition-colors duration-200;
+}
+
+/* Light mode (default) */
+body {
+  @apply bg-light-bg text-light-text;
+}
+
+/* Dark mode */
+:is(html.dark) body {
+  @apply bg-dark-bg text-dark-text;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light-bg dark:bg-dark-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-light-divider dark:bg-dark-divider rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-light-secondary dark:bg-dark-secondary;
+}
+
+/* Smooth animations */
+@layer components {
+  .fade-in {
+    @apply animate-fadeIn;
+  }
+
+  .slide-in {
+    @apply animate-slideIn;
+  }
+}
