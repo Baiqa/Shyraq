@@ -14,7 +14,7 @@ export default function NewsCard({ article }: NewsCardProps) {
 
   return (
     <Link href={article.url} target="_blank" rel="noopener noreferrer">
-      <article className="group flex gap-4 p-4 bg-light-bg dark:bg-dark-card rounded border border-light-divider dark:border-dark-divider hover:border-accent transition-all hover:shadow-sm cursor-pointer animate-slideIn">
+      <article className="group relative flex gap-4 p-4 bg-light-bg dark:bg-dark-card rounded border border-light-divider dark:border-dark-divider hover:border-accent transition-all hover:shadow-sm cursor-pointer animate-slideIn">
         {/* Thumbnail */}
         {article.image && (
           <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 relative overflow-hidden rounded bg-light-divider dark:bg-dark-divider">

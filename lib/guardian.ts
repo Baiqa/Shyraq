@@ -12,6 +12,16 @@ const categoryMap: Record<Category, string> = {
   science: 'science',
 };
 
+// Simple hash function for generating stable article IDs from URLs
+function hashString(str: string): string {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i);
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  return Math.abs(hash).toString(36);
+}
+
 export async function fetchGuardian(
   category: Category = 'all',
   language: Language = 'en',
@@ -24,6 +34,12 @@ export async function fetchGuardian(
   }
 
   try {
+    // The Guardian does not have native Russian-language content in their API.
+    // For Russian language requests, we skip Guardian entirely and rely on NewsAPI's /everything endpoint.
+    if (language === 'ru') {
+      return [];
+    }
+
     const guardianCategory = categoryMap[category];
 
     const url = new URL(BASE_URL);
@@ -32,12 +48,6 @@ export async function fetchGuardian(
     url.searchParams.append('page', String(page));
     url.searchParams.append('show-fields', 'thumbnail,byline,publication');
     url.searchParams.append('api-key', GUARDIAN_API_KEY);
-
-    // Guardian API doesn't support Russian language natively through this method,
-    // so we only fetch for English
-    if (language === 'ru') {
-      return [];
-    }
 
     const response = await fetch(url.toString(), {
       next: { revalidate: 300 },
@@ -49,8 +59,8 @@ export async function fetchGuardian(
 
     const data = await response.json();
 
-    return (data.response?.results || []).map((article: any, index: number) => ({
-      id: `guardian-${Date.now()}-${index}`,
+    return (data.response?.results || []).map((article: any) => ({
+      id: `guardian-${hashString(article.webUrl)}`,
       title: article.webTitle,
       description: null,
       content: null,
@@ -79,6 +89,7 @@ export async function searchGuardian(
   }
 
   try {
+    // The Guardian does not have native Russian-language content in their API.
     if (language === 'ru') {
       return [];
     }
@@ -100,8 +111,8 @@ export async function searchGuardian(
 
     const data = await response.json();
 
-    return (data.response?.results || []).map((article: any, index: number) => ({
-      id: `guardian-search-${Date.now()}-${index}`,
+    return (data.response?.results || []).map((article: any) => ({
+      id: `guardian-${hashString(article.webUrl)}`,
       title: article.webTitle,
       description: null,
       content: null,

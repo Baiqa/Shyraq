@@ -1,21 +1,53 @@
 import { Article } from './types';
 
+// Calculate string similarity using token overlap ratio (0 to 1)
+function stringSimilarity(str1: string, str2: string): number {
+  const normalize = (s: string) =>
+    s.toLowerCase().replace(/[^\w\s]/g, '').trim().split(/\s+/);
+
+  const tokens1 = normalize(str1);
+  const tokens2 = normalize(str2);
+
+  if (tokens1.length === 0 || tokens2.length === 0) {
+    return tokens1.length === tokens2.length ? 1 : 0;
+  }
+
+  const commonTokens = tokens1.filter(t => tokens2.includes(t)).length;
+  const totalTokens = new Set([...tokens1, ...tokens2]).size;
+
+  return commonTokens / totalTokens;
+}
+
 export function mergeFeeds(articles: Article[][]): Article[] {
   // Flatten all arrays
   const allArticles = articles.flat();
 
-  // Deduplicate by title (normalize to lowercase for comparison)
-  const seen = new Map<string, Article>();
+  // Deduplicate using similarity threshold (85%)
+  const seen: Article[] = [];
+  const SIMILARITY_THRESHOLD = 0.85;
 
   for (const article of allArticles) {
-    const normalizedTitle = article.title.toLowerCase().trim();
+    let isDuplicate = false;
 
-    if (!seen.has(normalizedTitle)) {
-      seen.set(normalizedTitle, article);
+    for (let i = 0; i < seen.length; i++) {
+      const similarity = stringSimilarity(article.title, seen[i].title);
+
+      if (similarity >= SIMILARITY_THRESHOLD) {
+        isDuplicate = true;
+        // Keep the article with more complete content (prefer one with description)
+        if (article.description && !seen[i].description) {
+          seen[i] = article;
+        }
+        break;
+      }
+    }
+
+    if (!isDuplicate) {
+      seen.push(article);
     }
   }
 
-  return Array.from(seen.values());
+  return seen;
 }
 
 export function sortArticlesByDate(articles: Article[]): Article[] {

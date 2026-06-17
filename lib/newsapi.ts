@@ -12,6 +12,16 @@ const categoryMap: Record<Category, string> = {
   science: 'science',
 };
 
+// Simple hash function for generating stable article IDs from URLs
+function hashString(str: string): string {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i);
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  return Math.abs(hash).toString(36);
+}
+
 export async function fetchNewsAPI(
   category: Category = 'all',
   language: Language = 'en',
@@ -24,17 +34,30 @@ export async function fetchNewsAPI(
   }
 
   try {
-    const apiCategory = categoryMap[category];
-    const lang = language === 'ru' ? 'ru' : 'us';
+    let url: URL;
 
-    const url = new URL(`${BASE_URL}/top-headlines`);
-    url.searchParams.append('country', lang);
-    url.searchParams.append('pageSize', String(pageSize));
-    url.searchParams.append('page', String(page));
-    url.searchParams.append('apiKey', NEWS_API_KEY);
+    if (language === 'ru') {
+      // For Russian language, use /everything endpoint which supports language parameter
+      // /top-headlines with country=ru has weak coverage on the free tier
+      url = new URL(`${BASE_URL}/everything`);
+      url.searchParams.append('q', 'новости');
+      url.searchParams.append('language', 'ru');
+      url.searchParams.append('pageSize', String(pageSize));
+      url.searchParams.append('page', String(page));
+      url.searchParams.append('sortBy', 'publishedAt');
+      url.searchParams.append('apiKey', NEWS_API_KEY);
+    } else {
+      // For English, use /top-headlines endpoint
+      const apiCategory = categoryMap[category];
+      url = new URL(`${BASE_URL}/top-headlines`);
+      url.searchParams.append('country', 'us');
+      url.searchParams.append('pageSize', String(pageSize));
+      url.searchParams.append('page', String(page));
+      url.searchParams.append('apiKey', NEWS_API_KEY);
 
-    if (category !== 'all') {
-      url.searchParams.set('category', apiCategory);
+      if (category !== 'all') {
+        url.searchParams.set('category', apiCategory);
+      }
     }
 
     const response = await fetch(url.toString(), {
@@ -47,8 +70,12 @@ export async function fetchNewsAPI(
 
     const data = await response.json();
 
-    return (data.articles || []).map((article: any, index: number) => ({
-      id: `newsapi-${Date.now()}-${index}`,
+    if (language === 'ru' && (!data.articles || data.articles.length === 0)) {
+      console.warn('NewsAPI returned 0 results for Russian language query. Consider increasing query scope or adjusting parameters.');
+    }
+
+    return (data.articles || []).map((article: any) => ({
+      id: `newsapi-${hashString(article.url)}`,
       title: article.title,
       description: article.description,
       content: article.content,
@@ -95,8 +122,8 @@ export async function searchNewsAPI(
 
     const data = await response.json();
 
-    return (data.articles || []).map((article: any, index: number) => ({
-      id: `newsapi-search-${Date.now()}-${index}`,
+    return (data.articles || []).map((article: any) => ({
+      id: `newsapi-${hashString(article.url)}`,
       title: article.title,
       description: article.description,
       content: article.content,
