@@ -2,6 +2,7 @@ import Link from 'next/link';
 import SearchBar from './SearchBar';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
+import AuthButton from './AuthButton';
 
 export default function Header() {
   return (
@@ -22,6 +23,7 @@ export default function Header() {
 
           {/* Controls */}
           <div className="flex items-center gap-2 md:gap-4">
+            <AuthButton />
             <ThemeToggle />
             <LanguageToggle />
           </div>

@@ -23,6 +23,19 @@ async function getArticles(language: string = 'en') {
   }
 }
 
+// Fire-and-forget sync to Supabase (non-blocking)
+async function syncArticles(articles: any[]) {
+  try {
+    await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/articles/sync`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(articles),
+    });
+  } catch (error) {
+    console.error('Error syncing articles:', error);
+  }
+}
+
 export const revalidate = 300; // Revalidate every 5 minutes
 
 export default async function Home({
@@ -32,6 +45,9 @@ export default async function Home({
 }) {
   const language = (searchParams.lang as string) || 'en';
   const articles = await getArticles(language);
+
+  // Sync articles to Supabase in background
+  syncArticles(articles);
 
   const heroArticles = articles.slice(0, 2);
   const feedArticles = articles.slice(2);
