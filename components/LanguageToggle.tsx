@@ -8,9 +8,11 @@ export default function LanguageToggle() {
   const [language, setLanguage] = useState<Language>('en');
 
   useEffect(() => {
+    const urlLanguage = new URLSearchParams(window.location.search).get('lang') as Language | null;
     const stored = localStorage.getItem('language') as Language | null;
-    const initial = stored || 'en';
+    const initial = urlLanguage || stored || 'en';
     setLanguage(initial);
+    document.documentElement.lang = initial;
     setMounted(true);
   }, []);
 
@@ -18,8 +20,11 @@ export default function LanguageToggle() {
     const newLang = language === 'en' ? 'ru' : 'en';
     setLanguage(newLang);
     localStorage.setItem('language', newLang);
-    // Trigger a page refresh or state update to fetch in new language
-    window.location.reload();
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', newLang);
+    document.documentElement.lang = newLang;
+    window.location.href = url.toString();
   };
 
   if (!mounted) {
