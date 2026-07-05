@@ -1,0 +1,414 @@
+{
+  "communities": {
+    "0": [
+      "app_auth_login_page",
+      "app_auth_login_page_loginpage",
+      "app_category_slug_page",
+      "app_category_slug_page_categorylabels",
+      "app_category_slug_page_categorypage",
+      "app_category_slug_page_generatestaticparams",
+      "app_category_slug_page_getarticles",
+      "app_category_slug_page_syncarticles",
+      "app_category_slug_page_validcategories",
+      "app_page",
+      "app_page_getarticles",
+      "app_page_home",
+      "app_page_syncarticles",
+      "app_saved_page",
+      "app_saved_page_savedpage",
+      "app_search_page",
+      "app_search_page_searcharticles",
+      "app_search_page_searchpage",
+      "app_search_page_syncarticles",
+      "components_categorynav",
+      "components_categorynav_categories",
+      "components_categorynav_categorynav",
+      "concept_news_aggregation",
+      "lib_guardian",
+      "lib_guardian_categorymap",
+      "lib_guardian_fetchguardian",
+      "lib_guardian_hashstring",
+      "lib_guardian_searchguardian",
+      "lib_mergefeeds_mergefeeds",
+      "lib_mergefeeds_sortarticlesbydate",
+      "lib_mergefeeds_stringsimilarity",
+      "lib_newsapi",
+      "lib_newsapi_categorymap",
+      "lib_newsapi_fetchnewsapi",
+      "lib_newsapi_hashstring",
+      "lib_newsapi_searchnewsapi",
+      "lib_types_category"
+    ],
+    "1": [
+      "pulse_tests_pages_home_page_homepage",
+      "pulse_tests_pages_home_page_homepage_click_category",
+      "pulse_tests_pages_home_page_homepage_get_current_language",
+      "pulse_tests_pages_home_page_homepage_get_current_theme",
+      "pulse_tests_pages_home_page_homepage_get_news_cards",
+      "pulse_tests_pages_home_page_homepage_is_footer_visible",
+      "pulse_tests_pages_home_page_homepage_is_language_toggle_visible",
+      "pulse_tests_pages_home_page_homepage_is_logo_visible",
+      "pulse_tests_pages_home_page_homepage_open_home",
+      "pulse_tests_tests_test_pulse_smoke_rationale_24",
+      "pulse_tests_tests_test_pulse_smoke_rationale_29",
+      "pulse_tests_tests_test_pulse_smoke_rationale_34",
+      "pulse_tests_tests_test_pulse_smoke_rationale_47",
+      "pulse_tests_tests_test_pulse_smoke_rationale_54",
+      "pulse_tests_tests_test_pulse_smoke_rationale_60",
+      "pulse_tests_tests_test_pulse_smoke_rationale_65",
+      "pulse_tests_tests_test_pulse_smoke_rationale_70",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_all_category_links_are_visible",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_category_click_navigates_to_correct_url",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_footer_is_visible",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_language_toggle_is_visible",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_logo_is_visible",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_news_cards_are_loaded",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_no_severe_console_errors",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_page_loads_with_correct_title",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_switch_language",
+      "pulse_tests_tests_test_pulse_smoke_testpulsesmoke_test_switch_themes"
+    ],
+    "2": [
+      "package",
+      "package_dependencies",
+      "package_dependencies_anthropic_ai_sdk",
+      "package_dependencies_next",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_supabase_ssr",
+      "package_dependencies_supabase_supabase_js",
+      "package_description",
+      "package_devdependencies",
+      "package_devdependencies_autoprefixer",
+      "package_devdependencies_postcss",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_typescript",
+      "package_name",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_lint",
+      "package_scripts_start",
+      "package_version"
+    ],
+    "3": [
+      "components_freshnessbar",
+      "components_freshnessbar_freshnessbar",
+      "components_freshnessbar_freshnessbarprops",
+      "components_herocard",
+      "components_herocard_herocard",
+      "components_herocard_herocardprops",
+      "components_newscard",
+      "components_newscard_newscard",
+      "components_newscard_newscardprops",
+      "components_newscardclient",
+      "components_newscardclient_newscardclient",
+      "components_newscardclient_newscardclientprops",
+      "components_newsfeed",
+      "components_newsfeed_newsfeed",
+      "components_newsfeed_newsfeedprops",
+      "doc_readme",
+      "lib_mergefeeds",
+      "lib_mergefeeds_getfreshnesscolor",
+      "lib_mergefeeds_gettimedifference",
+      "lib_mergefeeds_interpolatefreshnesscolor",
+      "lib_types",
+      "lib_types_article",
+      "lib_types_fetchedarticles"
+    ],
+    "4": [
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_allowsyntheticdefaultimports",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_incremental",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_plugins",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_compileroptions_usedefineforclassfields",
+      "tsconfig_exclude",
+      "tsconfig_include",
+      "tsconfig_paths"
+    ],
+    "5": [
+      "app_api_articles_id_summarize_route",
+      "app_api_articles_id_summarize_route_anthropic",
+      "app_api_articles_id_summarize_route_get",
+      "app_api_articles_sync_route",
+      "app_api_articles_sync_route_post",
+      "app_article_id_page",
+      "app_article_id_page_articlepage",
+      "app_auth_callback_route",
+      "app_auth_callback_route_get",
+      "components_aisummary",
+      "components_aisummary_aisummary",
+      "components_aisummary_aisummaryprops",
+      "concept_supabase_auth",
+      "lib_relatedarticles",
+      "lib_relatedarticles_getrelatedarticles",
+      "lib_supabase_server",
+      "lib_supabase_server_createclient",
+      "lib_supabase_server_createserviceroleclient",
+      "middleware",
+      "middleware_config",
+      "middleware_middleware"
+    ],
+    "6": [
+      "concept_smoke_tests",
+      "doc_pulse_tests_readme",
+      "pulse_tests_pages_base_page",
+      "pulse_tests_pages_base_page_basepage",
+      "pulse_tests_pages_base_page_basepage_click",
+      "pulse_tests_pages_base_page_basepage_find",
+      "pulse_tests_pages_base_page_basepage_find_all",
+      "pulse_tests_pages_base_page_basepage_get_current_url",
+      "pulse_tests_pages_base_page_basepage_get_title",
+      "pulse_tests_pages_base_page_basepage_init",
+      "pulse_tests_pages_base_page_basepage_is_visible",
+      "pulse_tests_pages_base_page_basepage_open",
+      "pulse_tests_pages_base_page_basepage_wait_for_url_contains",
+      "pulse_tests_pages_base_page_rationale_1",
+      "pulse_tests_pages_base_page_rationale_23",
+      "pulse_tests_pages_base_page_rationale_27",
+      "pulse_tests_pages_base_page_rationale_31",
+      "pulse_tests_pages_home_page",
+      "pulse_tests_pages_home_page_rationale_1",
+      "pulse_tests_tests_test_pulse_smoke",
+      "pulse_tests_tests_test_pulse_smoke_rationale_1"
+    ],
+    "7": [
+      "app_layout",
+      "app_layout_inter",
+      "app_layout_intermono",
+      "app_layout_metadata",
+      "app_layout_playfair",
+      "app_layout_rootlayout",
+      "components_header",
+      "components_header_header",
+      "components_languagetoggle",
+      "components_languagetoggle_languagetoggle",
+      "components_searchbar",
+      "components_searchbar_searchbar",
+      "components_themetoggle",
+      "components_themetoggle_themetoggle",
+      "lib_types_language",
+      "lib_types_theme"
+    ],
+    "8": [
+      "app_auth_login_loginpagecontent",
+      "app_auth_login_loginpagecontent_loginpagecontent",
+      "components_authbutton",
+      "components_authbutton_authbutton",
+      "components_savebutton",
+      "components_savebutton_savebutton",
+      "components_savebutton_savebuttonprops",
+      "lib_hooks_useuser",
+      "lib_hooks_useuser_useuser",
+      "lib_supabase_client",
+      "lib_supabase_client_createclient"
+    ],
+    "9": [
+      "pulse_tests_tests_conftest",
+      "pulse_tests_tests_conftest_driver",
+      "pulse_tests_tests_conftest_rationale_1"
+    ],
+    "10": [
+      "next_config",
+      "next_config_nextconfig"
+    ],
+    "11": [
+      "tailwind_config",
+      "tailwind_config_config"
+    ],
+    "12": [
+      "doc_requirements_test"
+    ],
+    "13": [
+      "next_env_d"
+    ],
+    "14": [
+      "postcss_config"
+    ],
+    "15": [
+      "pulse_tests_pages_init"
+    ]
+  },
+  "cohesion": {
+    "0": 0.11561561561561562,
+    "1": 0.09788359788359788,
+    "2": 0.08333333333333333,
+    "3": 0.20553359683794467,
+    "4": 0.09090909090909091,
+    "5": 0.1761904761904762,
+    "6": 0.11428571428571428,
+    "7": 0.15833333333333333,
+    "8": 0.38181818181818183,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0
+  },
+  "gods": [
+    {
+      "id": "pulse_tests_pages_home_page_homepage",
+      "label": "HomePage",
+      "degree": 21
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 18
+    },
+    {
+      "id": "lib_types_article",
+      "label": "Article",
+      "degree": 14
+    },
+    {
+      "id": "pulse_tests_tests_test_pulse_smoke_testpulsesmoke",
+      "label": "TestPulseSmoke",
+      "degree": 12
+    },
+    {
+      "id": "lib_supabase_server_createclient",
+      "label": "createClient()",
+      "degree": 11
+    },
+    {
+      "id": "pulse_tests_pages_base_page_basepage",
+      "label": "BasePage",
+      "degree": 11
+    },
+    {
+      "id": "lib_supabase_client_createclient",
+      "label": "createClient()",
+      "degree": 9
+    },
+    {
+      "id": "lib_mergefeeds_mergefeeds",
+      "label": "mergeFeeds()",
+      "degree": 8
+    },
+    {
+      "id": "lib_mergefeeds_gettimedifference",
+      "label": "getTimeDifference()",
+      "degree": 8
+    },
+    {
+      "id": "lib_mergefeeds_sortarticlesbydate",
+      "label": "sortArticlesByDate()",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "SavedPage()",
+      "target": "createClient()",
+      "source_files": [
+        "app/saved/page.tsx",
+        "lib/supabase/server.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `SavedPage()` unexpectedly reaches hub `createClient()`"
+    },
+    {
+      "source": "POST()",
+      "target": "createServiceRoleClient()",
+      "source_files": [
+        "app/api/articles/sync/route.ts",
+        "lib/supabase/server.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `POST()` unexpectedly reaches hub `createServiceRoleClient()`"
+    },
+    {
+      "source": "ArticlePage()",
+      "target": "getTimeDifference()",
+      "source_files": [
+        "app/article/[id]/page.tsx",
+        "lib/mergeFeeds.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "GET()",
+      "target": "createClient()",
+      "source_files": [
+        "app/auth/callback/route.ts",
+        "lib/supabase/server.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `GET()` unexpectedly reaches hub `createClient()`"
+    },
+    {
+      "source": "LoginPageContent()",
+      "target": "createClient()",
+      "source_files": [
+        "app/auth/login/LoginPageContent.tsx",
+        "lib/supabase/client.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `LoginPageContent()` unexpectedly reaches hub `createClient()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `HomePage` connect `Homepage Test POM` to `Smoke Test Suite`?",
+      "why": "High betweenness centrality (0.035) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `BasePage` connect `Smoke Test Suite` to `Homepage Test POM`?",
+      "why": "High betweenness centrality (0.023) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Article` connect `Card Components` to `App Routes`, `Article Summaries`?",
+      "why": "High betweenness centrality (0.016) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 12 inferred relationships involving `HomePage` (e.g. with `BasePage` and `TestPulseSmoke`) actually correct?",
+      "why": "`HomePage` has 12 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `anthropic`, `validCategories`, `categoryLabels` to the rest of the system?",
+      "why": "71 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `App Routes` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.11561561561561562 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Homepage Test POM` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.09788359788359788 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

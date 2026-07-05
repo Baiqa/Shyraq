@@ -12,9 +12,11 @@
     "@anthropic-ai/sdk": "^0.104.2",
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2",
+    "lucide-react": "^1.23.0",
     "next": "^14.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "recharts": "^3.9.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

@@ -1,0 +1,347 @@
+{
+  "nodes": [
+    {
+      "id": "doc_readme",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "doc_pulse_tests_readme",
+      "label": "pulse_tests/README.md",
+      "file_type": "document",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "doc_requirements_test",
+      "label": "requirements-test.txt",
+      "file_type": "document",
+      "source_file": "pulse_tests/tests/requirements-test.txt",
+      "source_location": "L1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "concept_news_aggregation",
+      "label": "News aggregation",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "concept_supabase_auth",
+      "label": "Supabase auth",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "concept_smoke_tests",
+      "label": "Smoke tests",
+      "file_type": "concept",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "_origin": "semantic"
+    }
+  ],
+  "edges": [
+    {
+      "source": "doc_readme",
+      "target": "app_page",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "app_category_slug_page",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "app_search_page",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "app_layout",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "app_auth_login_page",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "lib_newsapi",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "lib_guardian",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "lib_mergefeeds",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "lib_supabase_server",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "components_newsfeed",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "components_herocard",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "components_freshnessbar",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_readme",
+      "target": "components_aisummary",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_pulse_tests_readme",
+      "target": "pulse_tests_tests_test_pulse_smoke",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_pulse_tests_readme",
+      "target": "pulse_tests_pages_home_page",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "doc_pulse_tests_readme",
+      "target": "pulse_tests_pages_base_page",
+      "relation": "mentions",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_news_aggregation",
+      "target": "app_page",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_news_aggregation",
+      "target": "app_category_slug_page",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_news_aggregation",
+      "target": "app_search_page",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_news_aggregation",
+      "target": "app_article_id_page",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_news_aggregation",
+      "target": "app_auth_login_page",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_supabase_auth",
+      "target": "lib_newsapi",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_supabase_auth",
+      "target": "lib_guardian",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_supabase_auth",
+      "target": "lib_mergefeeds",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_supabase_auth",
+      "target": "lib_supabase_server",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_supabase_auth",
+      "target": "components_aisummary",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_smoke_tests",
+      "target": "pulse_tests_tests_test_pulse_smoke",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_smoke_tests",
+      "target": "pulse_tests_pages_home_page",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_smoke_tests",
+      "target": "pulse_tests_pages_base_page",
+      "relation": "covers",
+      "context": "semantic",
+      "confidence": "INFERRED",
+      "source_file": "pulse_tests/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

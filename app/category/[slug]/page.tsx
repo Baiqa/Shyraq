@@ -2,21 +2,15 @@ import { notFound } from 'next/navigation';
 import CategoryNav from '@/components/CategoryNav';
 import HeroCard from '@/components/HeroCard';
 import NewsFeed from '@/components/NewsFeed';
+import BreakingTicker from '@/components/widgets/BreakingTicker';
 import { fetchNewsAPI } from '@/lib/newsapi';
 import { fetchGuardian } from '@/lib/guardian';
 import { mergeFeeds, sortArticlesByDate } from '@/lib/mergeFeeds';
+import { getBreakingTickerItems } from '@/lib/widgets/breakingTicker';
+import { categories, getCategoryTheme } from '@/lib/categories';
 import { Category } from '@/lib/types';
 
-const validCategories: Category[] = ['all', 'technology', 'business', 'sports', 'general', 'science'];
-
-const categoryLabels: Record<Category, string> = {
-  all: 'All News',
-  technology: 'Technology',
-  business: 'Business',
-  sports: 'Sports',
-  general: 'World',
-  science: 'Science',
-};
+const validCategories: Category[] = categories.map((c) => c.slug);
 
 async function getArticles(category: Category, language: string = 'en') {
   try {
@@ -61,6 +55,10 @@ export default async function CategoryPage({
     notFound();
   }
 
+  const theme = getCategoryTheme(category)!;
+  const Icon = theme.icon;
+  const Widget = theme.widget;
+
   const language = (searchParams.lang as string) || 'en';
   const articles = await getArticles(category, language);
 
@@ -69,6 +67,7 @@ export default async function CategoryPage({
 
   const heroArticles = articles.slice(0, 2);
   const feedArticles = articles.slice(2);
+  const tickerItems = category === 'general' ? getBreakingTickerItems(articles) : [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
@@ -76,9 +75,17 @@ export default async function CategoryPage({
       <CategoryNav />
 
       {/* Category Title */}
-      <h1 className="text-3xl md:text-4xl font-display font-bold text-light-text dark:text-dark-text mb-8 md:mb-12">
-        {categoryLabels[category]}
+      <h1 className="flex items-center gap-3 text-3xl md:text-4xl font-display font-bold text-light-text dark:text-dark-text mb-6">
+        <Icon className={`w-7 h-7 md:w-8 md:h-8 ${theme.accentClass}`} />
+        {theme.pageTitle}
       </h1>
+
+      {/* Top-banner widget (Sports scores strip, General breaking ticker) */}
+      {theme.widgetPlacement === 'top-banner' && (
+        <section className="mb-8 md:mb-12">
+          {category === 'general' ? <BreakingTicker items={tickerItems} /> : Widget && <Widget />}
+        </section>
+      )}
 
       {/* Hero Section */}
       {heroArticles.length > 0 && (
@@ -91,12 +98,28 @@ export default async function CategoryPage({
         </section>
       )}
 
-      {/* News Feed */}
+      {/* Below-hero widget (Science latest papers) */}
+      {theme.widgetPlacement === 'below-hero' && Widget && (
+        <section className="mb-12 md:mb-16">
+          <Widget />
+        </section>
+      )}
+
+      {/* News Feed (+ sidebar widget for Business/Technology) */}
       <section>
         <h2 className="text-xl md:text-2xl font-display font-bold text-light-text dark:text-dark-text mb-8 uppercase tracking-wide">
-          More in {categoryLabels[category]}
+          More in {theme.pageTitle}
         </h2>
-        <NewsFeed articles={feedArticles} />
+        {theme.widgetPlacement === 'sidebar' && Widget ? (
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
+            <NewsFeed articles={feedArticles} />
+            <aside>
+              <Widget />
+            </aside>
+          </div>
+        ) : (
+          <NewsFeed articles={feedArticles} />
+        )}
       </section>
     </div>
   );
