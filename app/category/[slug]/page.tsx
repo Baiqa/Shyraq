@@ -7,6 +7,7 @@ import { fetchNewsAPI } from '@/lib/newsapi';
 import { fetchGuardian } from '@/lib/guardian';
 import { mergeFeeds, sortArticlesByDate } from '@/lib/mergeFeeds';
 import { getBreakingTickerItems } from '@/lib/widgets/breakingTicker';
+import { syncArticlesToDb } from '@/lib/syncArticles';
 import { categories, getCategoryTheme } from '@/lib/categories';
 import { Category } from '@/lib/types';
 
@@ -24,19 +25,6 @@ async function getArticles(category: Category, language: string = 'en') {
   } catch (error) {
     console.error('Error fetching articles:', error);
     return [];
-  }
-}
-
-// Fire-and-forget sync to Supabase (non-blocking)
-async function syncArticles(articles: any[]) {
-  try {
-    await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/articles/sync`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(articles),
-    });
-  } catch (error) {
-    console.error('Error syncing articles:', error);
   }
 }
 
@@ -62,8 +50,8 @@ export default async function CategoryPage({
   const language = (searchParams.lang as string) || 'en';
   const articles = await getArticles(category, language);
 
-  // Sync articles to Supabase in background
-  syncArticles(articles);
+  // Sync articles to Supabase in background (fire-and-forget)
+  syncArticlesToDb(articles);
 
   const heroArticles = articles.slice(0, 2);
   const feedArticles = articles.slice(2);

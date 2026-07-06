@@ -28,12 +28,26 @@ export async function GET(
       );
     }
 
-    // Return cached summary if it exists
+    // Return cached summary if it exists (available to everyone)
     if (article.ai_summary) {
       return NextResponse.json({
         summary: article.ai_summary,
         cached: true,
       });
+    }
+
+    // No cached summary — generating one costs money, so gate it.
+    // Bail out gracefully (no summary) instead of throwing when generation
+    // isn't possible/allowed; the client just renders nothing.
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return NextResponse.json({ summary: null, cached: false });
+    }
+
+    // Only authenticated users may trigger a new (paid) generation. This keeps
+    // anonymous traffic from burning the Anthropic key on a public deploy.
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      return NextResponse.json({ summary: null, cached: false });
     }
 
     // 2. Generate summary using Anthropic
@@ -44,7 +58,7 @@ Description: ${article.description || ''}
 Content: ${article.content || ''}`;
 
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 256,
       messages: [
         {
@@ -54,8 +68,13 @@ Content: ${article.content || ''}`;
       ],
     });
 
+    const firstBlock = message.content[0];
     const summary =
-      message.content[0].type === 'text' ? message.content[0].text : '';
+      firstBlock && firstBlock.type === 'text' ? firstBlock.text : '';
+
+    if (!summary) {
+      return NextResponse.json({ summary: null, cached: false });
+    }
 
     // 3. Save summary to database (using service role to bypass RLS)
     const serviceRoleClient = await createServiceRoleClient();
