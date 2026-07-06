@@ -9,9 +9,10 @@ import SaveButton from './SaveButton';
 
 interface NewsCardClientProps {
   article: Article;
+  variant?: 'horizontal' | 'vertical';
 }
 
-export default function NewsCardClient({ article }: NewsCardClientProps) {
+export default function NewsCardClient({ article, variant = 'horizontal' }: NewsCardClientProps) {
   const timeDiff = getTimeDifference(article.publishedAt);
   const timeString = `${timeDiff.value} ${timeDiff.unit}${timeDiff.value > 1 ? 's' : ''} ago`;
 
@@ -19,6 +20,50 @@ export default function NewsCardClient({ article }: NewsCardClientProps) {
     e.preventDefault();
     e.stopPropagation();
   };
+
+  if (variant === 'vertical') {
+    return (
+      <Link href={`/article/${article.id}`} className="block h-full">
+        <article className="group relative flex h-full flex-col overflow-hidden bg-light-bg dark:bg-dark-card rounded border border-light-divider dark:border-dark-divider hover:border-accent transition-all hover:shadow-sm cursor-pointer animate-slideIn">
+          {/* Save Button - Top Right */}
+          <div className="absolute top-3 right-3 z-10" onClick={handleSaveClick}>
+            <SaveButton articleId={article.id} redirectTo={`/article/${article.id}`} />
+          </div>
+
+          {/* Thumbnail */}
+          {article.image && (
+            <div className="relative aspect-video w-full overflow-hidden bg-light-divider dark:bg-dark-divider">
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+          )}
+
+          {/* Content */}
+          <div className="flex flex-1 flex-col justify-between p-4 pb-3 min-w-0">
+            <h3 className="font-display font-bold text-base md:text-lg text-light-text dark:text-dark-text line-clamp-3 group-hover:text-accent transition-colors">
+              {article.title}
+            </h3>
+
+            {/* Meta */}
+            <div className="flex items-center justify-between pt-3 text-xs md:text-sm font-mono text-light-secondary dark:text-dark-secondary">
+              <span className="truncate">{article.source}</span>
+              <span className="flex-shrink-0">{timeString}</span>
+            </div>
+          </div>
+
+          {/* Freshness Bar */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <FreshnessBar publishedAt={article.publishedAt} />
+          </div>
+        </article>
+      </Link>
+    );
+  }
 
   return (
     <Link href={`/article/${article.id}`}>

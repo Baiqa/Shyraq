@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import sanitizeHtml from 'sanitize-html';
 import { createClient } from '@/lib/supabase/server';
 import { getTimeDifference } from '@/lib/mergeFeeds';
 import AISummary from '@/components/AISummary';
@@ -29,6 +30,26 @@ export default async function ArticlePage({ params }: { params: { id: string } }
 
   const timeDiff = getTimeDifference(article.published_at);
   const timeString = `${timeDiff.value} ${timeDiff.unit}${timeDiff.value > 1 ? 's' : ''} ago`;
+
+  // Article bodies come from The Guardian as HTML. Sanitize before rendering to
+  // strip any scripts/unsafe attributes, keeping article markup (paragraphs,
+  // links, images, headings, quotes).
+  const contentHtml = article.content
+    ? sanitizeHtml(article.content, {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+          'img',
+          'figure',
+          'figcaption',
+          'h1',
+          'h2',
+        ]),
+        allowedAttributes: {
+          ...sanitizeHtml.defaults.allowedAttributes,
+          img: ['src', 'alt', 'title'],
+          a: ['href', 'name', 'target', 'rel'],
+        },
+      })
+    : '';
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-8 md:py-12">
@@ -72,12 +93,11 @@ export default async function ArticlePage({ params }: { params: { id: string } }
       <AISummary articleId={article.id} />
 
       {/* Main Content */}
-      {article.content && (
-        <div className="mb-10 prose dark:prose-invert max-w-none">
-          <p className="text-base md:text-lg text-light-text dark:text-dark-text leading-relaxed whitespace-pre-wrap">
-            {article.content}
-          </p>
-        </div>
+      {contentHtml && (
+        <div
+          className="mb-10 prose dark:prose-invert max-w-none prose-p:text-base md:prose-p:text-lg prose-p:leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
+        />
       )}
 
       {/* Read Full Article Button */}

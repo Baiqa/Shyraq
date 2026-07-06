@@ -75,8 +75,7 @@ cp .env.local.example .env.local
 Edit `.env.local` and add your API keys:
 
 ```
-NEXT_PUBLIC_NEWS_API_KEY=your_newsapi_key_here
-NEXT_PUBLIC_GUARDIAN_API_KEY=your_guardian_api_key_here
+GUARDIAN_API_KEY=your_guardian_api_key_here
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
@@ -228,8 +227,7 @@ npm run start
 3. Click "New Project"
 4. Import your GitHub repository
 5. Set environment variables in Vercel dashboard:
-   - `NEXT_PUBLIC_NEWS_API_KEY`
-   - `NEXT_PUBLIC_GUARDIAN_API_KEY`
+   - `GUARDIAN_API_KEY`
 6. Click "Deploy"
 
 ### Option 2: Vercel CLI
@@ -255,10 +253,8 @@ npm run start
 
 1. Go to your project settings on Vercel
 2. Navigate to "Environment Variables"
-3. Add both API keys:
-   - Key: `NEXT_PUBLIC_NEWS_API_KEY`
-   - Value: `your_newsapi_key`
-   - Key: `NEXT_PUBLIC_GUARDIAN_API_KEY`
+3. Add the API key:
+   - Key: `GUARDIAN_API_KEY`
    - Value: `your_guardian_api_key`
 4. Redeploy your project
 

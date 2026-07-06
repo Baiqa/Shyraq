@@ -56,11 +56,6 @@ class TestPulseSmoke:
         cards = page.get_news_cards()
         assert len(cards) >= 5, f"Найдено только {len(cards)} карточек"
 
-    def test_language_toggle_is_visible(self, driver):
-        """Переключатель языка (EN) виден на странице"""
-        page = HomePage(driver).open_home()
-        assert page.is_language_toggle_visible()
-
     def test_footer_is_visible(self, driver):
         """Футер отображается на странице"""
         page = HomePage(driver).open_home()
@@ -87,19 +82,4 @@ class TestPulseSmoke:
 
         assert page.get_current_theme() == expected_theme, (
             f"Ожидали тему '{expected_theme}', получили '{page.get_current_theme()}'"
-        )
-
-    def test_switch_language(self, driver):
-        page = HomePage(driver).open_home()
-        initial_language = page.get_current_language()
-        expected_language = "en" if initial_language == "ru" else "ru"
-
-        page.click(page.SWITCH_LANGUAGE)
-
-        WebDriverWait(driver, 10).until(
-            lambda d: page.get_current_language() == expected_language
-        )
-
-        assert page.get_current_language() == expected_language, (
-            f"Ожидали язык '{expected_language}', получили '{page.get_current_language()}'"
         )

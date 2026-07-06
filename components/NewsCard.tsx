@@ -7,8 +7,9 @@ import NewsCardClient from './NewsCardClient';
 
 interface NewsCardProps {
   article: Article;
+  variant?: 'horizontal' | 'vertical';
 }
 
-export default function NewsCard({ article }: NewsCardProps) {
-  return <NewsCardClient article={article} />;
+export default function NewsCard({ article, variant = 'horizontal' }: NewsCardProps) {
+  return <NewsCardClient article={article} variant={variant} />;
 }

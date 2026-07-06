@@ -25,7 +25,7 @@ These tests drive headless Chrome against a **running app** (default `http://loc
 ## Environment variables
 
 Required in `.env.local` (see `.env.local.example`):
-- `NEXT_PUBLIC_NEWS_API_KEY` / `NEXT_PUBLIC_GUARDIAN_API_KEY` — news sources
+- `GUARDIAN_API_KEY` — news source (server-only; The Guardian Open Platform, the only free source that legally serves full article text)
 - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` — Supabase
 - `ANTHROPIC_API_KEY` — AI summaries (Claude 3.5 Sonnet)
 - `NEXT_PUBLIC_APP_URL` — used server-side to call the app's own `/api/articles/sync` route

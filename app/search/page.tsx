@@ -1,23 +1,20 @@
 import { notFound } from 'next/navigation';
 import CategoryNav from '@/components/CategoryNav';
 import NewsFeed from '@/components/NewsFeed';
-import { searchNewsAPI } from '@/lib/newsapi';
 import { searchGuardian } from '@/lib/guardian';
 import { mergeFeeds, sortArticlesByDate } from '@/lib/mergeFeeds';
 import { syncArticlesToDb } from '@/lib/syncArticles';
 
-async function searchArticles(query: string, language: string = 'en') {
+async function searchArticles(query: string, _language: string = 'en') {
   if (!query || query.trim().length === 0) {
     return [];
   }
 
   try {
-    const [newsApiResults, guardianResults] = await Promise.all([
-      searchNewsAPI(query, language === 'ru' ? 'ru' : 'en', 20),
-      language === 'en' ? searchGuardian(query, 'en', 10) : Promise.resolve([]),
-    ]);
+    // Guardian-only: the sole free source with legally reusable full text.
+    const guardianResults = await searchGuardian(query, 'en', 30);
 
-    const allArticles = mergeFeeds([newsApiResults, guardianResults]);
+    const allArticles = mergeFeeds([guardianResults]);
     return sortArticlesByDate(allArticles);
   } catch (error) {
     console.error('Error searching articles:', error);

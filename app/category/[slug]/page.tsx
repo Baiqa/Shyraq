@@ -3,7 +3,6 @@ import CategoryNav from '@/components/CategoryNav';
 import HeroCard from '@/components/HeroCard';
 import NewsFeed from '@/components/NewsFeed';
 import BreakingTicker from '@/components/widgets/BreakingTicker';
-import { fetchNewsAPI } from '@/lib/newsapi';
 import { fetchGuardian } from '@/lib/guardian';
 import { mergeFeeds, sortArticlesByDate } from '@/lib/mergeFeeds';
 import { getBreakingTickerItems } from '@/lib/widgets/breakingTicker';
@@ -13,14 +12,12 @@ import { Category } from '@/lib/types';
 
 const validCategories: Category[] = categories.map((c) => c.slug);
 
-async function getArticles(category: Category, language: string = 'en') {
+async function getArticles(category: Category, _language: string = 'en') {
   try {
-    const [newsApiArticles, guardianArticles] = await Promise.all([
-      fetchNewsAPI(category, language === 'ru' ? 'ru' : 'en', 20),
-      language === 'en' ? fetchGuardian(category, 'en', 10) : Promise.resolve([]),
-    ]);
+    // Guardian-only: it's the sole free source with legally reusable full text.
+    const guardianArticles = await fetchGuardian(category, 'en', 30);
 
-    const allArticles = mergeFeeds([newsApiArticles, guardianArticles]);
+    const allArticles = mergeFeeds([guardianArticles]);
     return sortArticlesByDate(allArticles);
   } catch (error) {
     console.error('Error fetching articles:', error);

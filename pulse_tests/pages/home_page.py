@@ -22,12 +22,9 @@ class HomePage(BasePage):
     NAV_LINK_SCIENCE = (By.CSS_SELECTOR, "a[href='/category/science']")
 
     SEARCH_BUTTON = (By.CSS_SELECTOR, "button[aria-label*='search' i], button[class*='search' i]")
-    LANGUAGE_TOGGLE = (By.XPATH, "//*[self::button or self::a][contains(., 'EN')]")
 
     THEME_TOGGLE = (By.CSS_SELECTOR, "button[title*='Switch to']")
 
-    SWITCH_LANGUAGE = LANGUAGE_TOGGLE
-    
     NEWS_CARD_LINKS = (
         By.XPATH,
         "//main//a[contains(@href, 'http') and not(contains(@href, 'shyraq-one'))]",
@@ -52,15 +49,7 @@ class HomePage(BasePage):
     def is_footer_visible(self) -> bool:
         return self.is_visible(self.FOOTER)
 
-    def is_language_toggle_visible(self) -> bool:
-        return self.is_visible(self.LANGUAGE_TOGGLE)
-    
     def get_current_theme(self):
         html_element = self.driver.find_element(By.TAG_NAME, "html")
         classes = html_element.get_attribute("class")
         return "dark" if "dark" in classes else "light"
-    
-    def get_current_language(self):
-        html_element = self.driver.find_element(By.TAG_NAME, "html")
-        lang = html_element.get_attribute("lang")
-        return lang
